@@ -108,6 +108,12 @@ body {
   border: 1px solid rgba(219, 91, 45, 0.25);
 }
 
+.summary-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
 .summary-label {
   margin: 0;
   color: var(--muted);
@@ -130,6 +136,27 @@ body {
   font-weight: 700;
   cursor: pointer;
   min-height: 44px;
+}
+
+.install-btn {
+  border: 1px solid rgba(27, 27, 27, 0.22);
+  border-radius: 12px;
+  padding: 0.7rem 1rem;
+  background: #fff;
+  color: #1f1f1f;
+  font-weight: 700;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.install-btn:hover,
+.install-btn:focus-visible {
+  background: #fff4e7;
+  outline: none;
+}
+
+.install-btn[hidden] {
+  display: none;
 }
 
 .reset-btn:hover,
@@ -239,6 +266,21 @@ select:focus-visible {
 
   .frames-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 450px) {
+  .summary-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .summary-actions {
+    width: 100%;
+  }
+
+  .summary-actions button {
+    flex: 1;
   }
 }
 

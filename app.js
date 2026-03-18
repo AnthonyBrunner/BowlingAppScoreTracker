@@ -11,6 +11,9 @@ const framesContainer = document.getElementById("framesContainer");
 const frameTemplate = document.getElementById("frameTemplate");
 const grandTotalEl = document.getElementById("grandTotal");
 const resetBtn = document.getElementById("resetBtn");
+const installBtn = document.getElementById("installBtn");
+
+let deferredInstallPrompt = null;
 
 init();
 
@@ -18,6 +21,7 @@ function init() {
   renderFrames();
   updateUI();
   resetBtn.addEventListener("click", resetGame);
+  setupInstallFlow();
 }
 
 function renderFrames() {
@@ -365,4 +369,49 @@ function resetGame() {
     gameState[i].roll3 = null;
   }
   updateUI();
+}
+
+function setupInstallFlow() {
+  if (!installBtn) {
+    return;
+  }
+
+  const isStandalone =
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone === true;
+
+  if (isStandalone) {
+    installBtn.hidden = true;
+    return;
+  }
+
+  window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    deferredInstallPrompt = event;
+    installBtn.hidden = false;
+  });
+
+  installBtn.addEventListener("click", async () => {
+    if (!deferredInstallPrompt) {
+      return;
+    }
+
+    deferredInstallPrompt.prompt();
+    await deferredInstallPrompt.userChoice;
+    deferredInstallPrompt = null;
+    installBtn.hidden = true;
+  });
+
+  window.addEventListener("appinstalled", () => {
+    deferredInstallPrompt = null;
+    installBtn.hidden = true;
+  });
+}
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch((error) => {
+      console.error("Service worker registration failed:", error);
+    });
+  });
 }

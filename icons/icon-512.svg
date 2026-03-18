@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Lane Ledger icon">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#db5b2d" />
+      <stop offset="100%" stop-color="#8d3d1d" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="120" fill="url(#bg)" />
+  <circle cx="256" cy="262" r="142" fill="#f4efe2" />
+  <circle cx="205" cy="223" r="19" fill="#db5b2d" />
+  <circle cx="256" cy="200" r="19" fill="#db5b2d" />
+  <circle cx="307" cy="223" r="19" fill="#db5b2d" />
+  <text x="256" y="425" text-anchor="middle" font-size="78" font-family="Barlow, Segoe UI, sans-serif" font-weight="700" fill="#f4efe2">LL</text>
+</svg>
