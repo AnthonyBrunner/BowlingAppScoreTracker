@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lane Ledger - Bowling Scorecard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-shape bg-shape-1" aria-hidden="true"></div>
+    <div class="bg-shape bg-shape-2" aria-hidden="true"></div>
+
+    <main class="app-shell">
+      <header class="app-header">
+        <p class="kicker">Mobile Bowling Tracker</p>
+        <h1>Lane Ledger</h1>
+        <p class="subhead">Tap in your rolls and get automatic frame and total scoring.</p>
+      </header>
+
+      <section class="summary-card" aria-live="polite">
+        <div>
+          <p class="summary-label">Current Total</p>
+          <p id="grandTotal" class="summary-total">0</p>
+        </div>
+        <button id="resetBtn" type="button" class="reset-btn">New Game</button>
+      </section>
+
+      <section id="framesContainer" class="frames-grid" aria-label="Bowling frames"></section>
+    </main>
+
+    <template id="frameTemplate">
+      <article class="frame-card">
+        <div class="frame-top">
+          <h2 class="frame-title"></h2>
+          <span class="frame-status">Pending</span>
+        </div>
+
+        <div class="roll-group">
+          <label>
+            Roll 1
+            <select data-roll="1"></select>
+          </label>
+          <label>
+            Roll 2
+            <select data-roll="2"></select>
+          </label>
+          <label class="roll-3-wrap hidden">
+            Roll 3
+            <select data-roll="3"></select>
+          </label>
+        </div>
+
+        <p class="frame-score-line">
+          Frame Score: <strong class="frame-score">-</strong>
+        </p>
+        <p class="frame-score-line cumulative">
+          Cumulative: <strong class="frame-cumulative">-</strong>
+        </p>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>

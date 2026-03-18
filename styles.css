@@ -1,0 +1,249 @@
+:root {
+  --bg-deep: #101820;
+  --bg-surface: #f4efe2;
+  --card: #fff9ec;
+  --ink: #1b1b1b;
+  --muted: #5a5a5a;
+  --accent: #db5b2d;
+  --accent-soft: #f29f67;
+  --ok: #1f7a4d;
+  --warn: #9d2c2c;
+  --ring: rgba(219, 91, 45, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Barlow", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 80% 20%, #ffddb8 0%, transparent 40%),
+    radial-gradient(circle at 20% 90%, #b8d7ff 0%, transparent 35%),
+    linear-gradient(165deg, var(--bg-deep) 0%, #253245 35%, #8d734f 100%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.bg-shape {
+  position: fixed;
+  border-radius: 999px;
+  filter: blur(1px);
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.bg-shape-1 {
+  width: 360px;
+  height: 360px;
+  top: -80px;
+  right: -90px;
+  background: #f29f67;
+}
+
+.bg-shape-2 {
+  width: 300px;
+  height: 300px;
+  bottom: -110px;
+  left: -60px;
+  background: #66a3ff;
+}
+
+.app-shell {
+  width: min(980px, calc(100% - 1.2rem));
+  margin: 1.2rem auto 2rem;
+  background: color-mix(in srgb, var(--bg-surface) 88%, white);
+  border-radius: 24px;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  animation: reveal 550ms ease-out;
+}
+
+@keyframes reveal {
+  from {
+    transform: translateY(18px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.app-header h1 {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  letter-spacing: 0.02em;
+}
+
+.kicker {
+  margin: 0;
+  font-size: 0.86rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.subhead {
+  margin: 0.3rem 0 1rem;
+  color: var(--muted);
+}
+
+.summary-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+  background: linear-gradient(120deg, #fff8ec, #ffe8cc);
+  border-radius: 18px;
+  padding: 0.85rem;
+  border: 1px solid rgba(219, 91, 45, 0.25);
+}
+
+.summary-label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.summary-total {
+  margin: 0;
+  font-size: 2rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+}
+
+.reset-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 0.7rem 1rem;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.reset-btn:hover,
+.reset-btn:focus-visible {
+  background: #c84f25;
+  outline: none;
+}
+
+.frames-grid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.frame-card {
+  background: var(--card);
+  border: 1px solid rgba(27, 27, 27, 0.12);
+  border-radius: 16px;
+  padding: 0.75rem;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: card-in 500ms ease forwards;
+}
+
+.frame-card:nth-child(odd) {
+  background: linear-gradient(145deg, #fff9ec, #ffefd8);
+}
+
+@keyframes card-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.frame-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.frame-title {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.frame-status {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--warn);
+}
+
+.frame-status.complete {
+  color: var(--ok);
+}
+
+.roll-group {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.roll-group label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #373737;
+  display: grid;
+  gap: 0.25rem;
+}
+
+select {
+  width: 100%;
+  border: 1px solid rgba(27, 27, 27, 0.2);
+  border-radius: 10px;
+  min-height: 44px;
+  font-size: 1rem;
+  padding: 0.45rem;
+  background: #fff;
+}
+
+select:focus-visible {
+  outline: 3px solid var(--ring);
+  border-color: var(--accent);
+}
+
+.roll-3-wrap.hidden {
+  display: none;
+}
+
+.frame-score-line {
+  margin: 0.55rem 0 0;
+  font-size: 0.92rem;
+}
+
+.frame-score-line.cumulative {
+  color: #404040;
+}
+
+@media (min-width: 640px) {
+  .app-shell {
+    padding: 1.2rem;
+  }
+
+  .frames-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .frames-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
